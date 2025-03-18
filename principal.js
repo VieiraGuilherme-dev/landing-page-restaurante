@@ -1,71 +1,32 @@
-let menu = document.querySelector('#menu-btn');
-let navbar = document.querySelector('.header .navbar');
+const header = document.querySelector("header");
 
-menu.onclick = () =>{
-    menu.classList.toggle('fa-times');
-    navbar.classList.toggle('active');
+window.addEventListener("scroll", function () {
+    header.classList.toggle("sticky", window.scrollY > 160);
+});
+
+let menu = document.querySelector('#menu-icon');
+let navlinks = document.querySelector('.navlinks');
+
+menu.onclick = () => {
+    menu.classList.toggle('bx-x');
+    navlinks.classList.toggle('open');
 };
 
-window.onscroll = () =>{
-    menu.classList.remove('fa-times');
-    navbar.classList.remove('active');
+window.onscroll = () => {
+    menu.classList.remove('bx-x');
+    navlinks.classList.remove('open');
 };
-/* Slides */
 
-var swiper = new Swiper(".home-slider", {
-    spaceBetween: 20,
-    effect: "fade",
-    grabCursor: true,
-    loop:true,
-    autoplay: {
-        delay: 4000,  
-    }, 
-    centeredSlides: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
+const animate = ScrollReveal({
+    origin: 'top',
+    distance: '65px',
+    duration: 2600, // Corrigido de 'durarion' para 'duration'
+    delay: 400
 });
 
-var swiper = new Swiper(".review-slider", {
-    spaceBetween: 20,
-    grabCursor: true,
-    loop:true,
-    autoplay: {
-        delay: 7500,
-        disableOnInteraction: false,
-    },
-    breakpoints:{
-        0:{
-            slidesPerView:1,
-        },
-        600:{
-            slidesPerView:2,
-        },
-    },
-});
+animate.reveal(".home-text, .about-img, .feature-left, .social-icons", { origin: "left" });
 
-var swiper = new Swiper(".blogs-slider", {
-    spaceBetween: 20,
-    grabCursor: true,
-    loop:true,
-    autoplay: {
-        delay: 7500,
-        disableOnInteraction: false,
-    },
-    pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-    },
-    breakpoints:{
-        0:{
-            slidesPerView:1,
-        },
-        768:{
-            slidesPerView:2,
-        },
-        991:{
-            slidesPerView:3,
-        },
-    },
-});
+animate.reveal(".arrow, .about-text, .feature-right", { origin: "right" });
+
+animate.reveal(".home-img, .text-center, .services-content, .feature-middle, .end-text1, end-text2, .contact-box", { interval: 150});
+
